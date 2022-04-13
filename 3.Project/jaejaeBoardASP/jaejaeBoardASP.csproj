@@ -66,6 +66,7 @@
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Messaging" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Extensions" />
@@ -163,12 +164,31 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Models\jaejaeSystem.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>jaejaeSystem.Context.cs</LastGenOutput>
+      <DependentUpon>jaejaeSystem.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\jaejaeSystem.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>jaejaeSystem.edmx</DependentUpon>
+      <LastGenOutput>jaejaeSystem.cs</LastGenOutput>
+    </Content>
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EntityDeploy Include="Models\jaejaeSystem.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>jaejaeSystem.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\jaejaeSystem.edmx.diagram">
+      <DependentUpon>jaejaeSystem.edmx</DependentUpon>
+    </Content>
+    <Content Include="Controllers\UserBizHandler.ashx" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Scripts\common.js" />
     <Content Include="Scripts\jqGrid\.gitignore" />
     <Content Include="Scripts\jqGrid\bower.json" />
     <Content Include="Scripts\jqGrid\build.properties" />
@@ -359,6 +379,7 @@
     <Content Include="Scripts\jquery-ui-1.13.1.custom\jquery-ui.theme.min.css" />
     <Content Include="Scripts\jquery-ui-1.13.1.custom\LICENSE.txt" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popup.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
     <Content Include="Scripts\WebForms\GridView.js" />
@@ -405,6 +426,9 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\UserBizHandler.ashx.cs">
+      <DependentUpon>UserBizHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -414,6 +438,33 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\jaejaeSystem.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>jaejaeSystem.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\jaejaeSystem.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>jaejaeSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\jaejaeSystem.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>jaejaeSystem.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pSelectConditionTestTB_Result.cs">
+      <DependentUpon>jaejaeSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tCommonCode.cs">
+      <DependentUpon>jaejaeSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tCommonCodeGroup.cs">
+      <DependentUpon>jaejaeSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\userTB.cs">
+      <DependentUpon>jaejaeSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -440,8 +491,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -453,6 +502,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
