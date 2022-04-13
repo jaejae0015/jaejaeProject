@@ -26,3 +26,5 @@ https://docs.microsoft.com/ko-kr/xamarin/cross-platform/troubleshooting/question
 
 --AutoFac사용
 https://intrepidgeeks.com/tutorial/autofac-example
+
+--프로젝트 커밋은 반드시 AnhkSVN사용하자.
