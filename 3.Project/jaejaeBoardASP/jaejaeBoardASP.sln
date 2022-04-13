@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jaejaeBoardASP", "jaejaeBoardASP.csproj", "{4329C55A-DA9D-488F-B9B7-F4B42BED98E7}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4329C55A-DA9D-488F-B9B7-F4B42BED98E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4329C55A-DA9D-488F-B9B7-F4B42BED98E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4329C55A-DA9D-488F-B9B7-F4B42BED98E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4329C55A-DA9D-488F-B9B7-F4B42BED98E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {265CF795-0732-4A91-A936-F600D542644A}
+	EndGlobalSection
+EndGlobal
