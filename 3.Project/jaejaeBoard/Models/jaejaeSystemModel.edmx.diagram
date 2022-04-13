@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="052f5f8f7201447a8e1bc494f165a281" Name="Diagram1" DisplayType="true" ZoomLevel="76">
+        <EntityTypeShape EntityType="jaejaeSystemModel.tCommonCode" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="jaejaeSystemModel.tCommonCodeGroup" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="jaejaeSystemModel.userTB" Width="1.5" PointX="1.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

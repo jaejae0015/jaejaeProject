@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="jaejaeSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tCommonCode">
+          <Key>
+            <PropertyRef Name="CodeIdx" />
+          </Key>
+          <Property Name="CodeIdx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupIdx" Type="int" Nullable="false" />
+          <Property Name="GroupCode" Type="varchar" MaxLength="10" />
+          <Property Name="CommonCode" Type="varchar" MaxLength="10" />
+          <Property Name="CodeName" Type="nvarchar" MaxLength="100" />
+          <Property Name="DisplayOrder" Type="int" />
+          <Property Name="UseYn" Type="char" MaxLength="1" />
+          <Property Name="DltYn" Type="char" MaxLength="1" />
+          <Property Name="CrtDateTime" Type="datetime" />
+          <Property Name="UptDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tCommonCodeGroup">
+          <Key>
+            <PropertyRef Name="GroupIdx" />
+          </Key>
+          <Property Name="GroupIdx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupCode" Type="varchar" MaxLength="10" />
+          <Property Name="CodeName" Type="nvarchar" MaxLength="100" />
+          <Property Name="UseYn" Type="char" MaxLength="1" />
+          <Property Name="DltYn" Type="char" MaxLength="1" />
+          <Property Name="CrtDateTime" Type="datetime" />
+          <Property Name="UptDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="userTB">
+          <Key>
+            <PropertyRef Name="UKID" />
+          </Key>
+          <Property Name="UKID" Type="numeric" Precision="38" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USERID" Type="nvarchar" MaxLength="20" />
+          <Property Name="USERPASS" Type="nvarchar" MaxLength="2000" />
+          <Property Name="USERNM" Type="nvarchar" MaxLength="60" />
+          <Property Name="USERTYPECD" Type="nvarchar" MaxLength="20" />
+          <Property Name="AUTHTYPE" Type="nchar" MaxLength="1" />
+          <Property Name="OFFICETEL1" Type="nvarchar" MaxLength="3" />
+          <Property Name="OFFICETEL2" Type="nvarchar" MaxLength="10" />
+          <Property Name="OFFICETEL3" Type="nvarchar" MaxLength="10" />
+          <Property Name="CELLNO1" Type="nvarchar" MaxLength="3" />
+          <Property Name="CELLNO2" Type="nvarchar" MaxLength="10" />
+          <Property Name="CELLNO3" Type="nvarchar" MaxLength="10" />
+          <Property Name="ZIPCODE" Type="nvarchar" MaxLength="7" />
+          <Property Name="ADDRESS" Type="nvarchar" MaxLength="500" />
+          <Property Name="ADDRESS1" Type="nvarchar(max)" />
+          <Property Name="EMAIL1" Type="nvarchar(max)" />
+          <Property Name="EMAIL2" Type="nvarchar" MaxLength="60" />
+          <Property Name="ISSMS" Type="nchar" MaxLength="1" />
+          <Property Name="ISEMAIL" Type="nchar" MaxLength="1" />
+          <Property Name="COMPANYID" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="ORGNM" Type="nvarchar" MaxLength="200" />
+          <Property Name="DIVISIONNM" Type="nvarchar" MaxLength="200" />
+          <Property Name="JOBNM" Type="nvarchar" MaxLength="200" />
+          <Property Name="EMPNO" Type="nvarchar" MaxLength="20" />
+          <Property Name="ENTERDT" Type="nvarchar" MaxLength="8" />
+          <Property Name="APPTYPE" Type="nchar" MaxLength="1" />
+          <Property Name="APPDT" Type="nvarchar" MaxLength="8" />
+          <Property Name="APPUSERID" Type="nvarchar" MaxLength="20" />
+          <Property Name="DELYN" Type="nchar" MaxLength="1" />
+          <Property Name="CREDT" Type="datetime" />
+          <Property Name="CREUSERID" Type="nvarchar" MaxLength="20" />
+          <Property Name="MODDT" Type="datetime" />
+          <Property Name="MODUSERID" Type="nvarchar" MaxLength="20" />
+          <Property Name="RESEARCHERNM" Type="nvarchar" MaxLength="20" />
+          <Property Name="BIRTHDT" Type="nvarchar" MaxLength="8" />
+          <Property Name="GENDERCD" Type="nchar" MaxLength="1" />
+        </EntityType>
+        <Function Name="pSelectConditionTestTB" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="strSearchText" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="jaejaeSystemModelStoreContainer">
+          <EntitySet Name="tCommonCode" EntityType="Self.tCommonCode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tCommonCodeGroup" EntityType="Self.tCommonCodeGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="userTB" EntityType="Self.userTB" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="jaejaeSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="jaejaeSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tCommonCode" EntityType="jaejaeSystemModel.tCommonCode" />
+          <EntitySet Name="tCommonCodeGroup" EntityType="jaejaeSystemModel.tCommonCodeGroup" />
+          <FunctionImport Name="pSelectConditionTestTB" ReturnType="Collection(jaejaeSystemModel.pSelectConditionTestTB_Result)">
+          <Parameter Name="strSearchText" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="userTB" EntityType="jaejaeSystemModel.userTB" />
+        </EntityContainer>
+        <EntityType Name="tCommonCode">
+          <Key>
+            <PropertyRef Name="CodeIdx" />
+          </Key>
+          <Property Name="CodeIdx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupIdx" Type="Int32" Nullable="false" />
+          <Property Name="GroupCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CommonCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CodeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayOrder" Type="Int32" />
+          <Property Name="UseYn" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DltYn" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CrtDateTime" Type="DateTime" Precision="3" />
+          <Property Name="UptDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tCommonCodeGroup">
+          <Key>
+            <PropertyRef Name="GroupIdx" />
+          </Key>
+          <Property Name="GroupIdx" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CodeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UseYn" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DltYn" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CrtDateTime" Type="DateTime" Precision="3" />
+          <Property Name="UptDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <ComplexType Name="pSelectConditionTestTB_Result">
+          <Property Type="Decimal" Name="UKID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="USERID" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="USERPASS" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="USERNM" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="USERTYPECD" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="AUTHTYPE" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="OFFICETEL1" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="OFFICETEL2" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="OFFICETEL3" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="CELLNO1" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="CELLNO2" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="CELLNO3" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="ZIPCODE" Nullable="true" MaxLength="7" />
+          <Property Type="String" Name="ADDRESS" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ADDRESS1" Nullable="true" />
+          <Property Type="String" Name="EMAIL1" Nullable="true" />
+          <Property Type="String" Name="EMAIL2" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="ISSMS" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="ISEMAIL" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="COMPANYID" Nullable="true" Precision="38" Scale="0" />
+          <Property Type="String" Name="ORGNM" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="DIVISIONNM" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="JOBNM" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="EMPNO" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ENTERDT" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="APPTYPE" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="APPDT" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="APPUSERID" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DELYN" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="CREDT" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CREUSERID" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="MODDT" Nullable="true" Precision="23" />
+          <Property Type="String" Name="MODUSERID" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="RESEARCHERNM" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="BIRTHDT" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="GENDERCD" Nullable="true" MaxLength="1" />
+        </ComplexType>
+        <EntityType Name="userTB">
+          <Key>
+            <PropertyRef Name="UKID" />
+          </Key>
+          <Property Name="UKID" Type="Decimal" Nullable="false" Precision="38" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USERID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="USERPASS" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="USERNM" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="USERTYPECD" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AUTHTYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="OFFICETEL1" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="OFFICETEL2" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="OFFICETEL3" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CELLNO1" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CELLNO2" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CELLNO3" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ZIPCODE" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL2" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="ISSMS" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="ISEMAIL" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="COMPANYID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="ORGNM" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DIVISIONNM" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="JOBNM" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EMPNO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ENTERDT" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="APPTYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="APPDT" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="APPUSERID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DELYN" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="CREDT" Type="DateTime" Precision="3" />
+          <Property Name="CREUSERID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MODDT" Type="DateTime" Precision="3" />
+          <Property Name="MODUSERID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RESEARCHERNM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="BIRTHDT" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="GENDERCD" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="jaejaeSystemModelStoreContainer" CdmEntityContainer="jaejaeSystemEntities">
+          <EntitySetMapping Name="tCommonCode">
+            <EntityTypeMapping TypeName="jaejaeSystemModel.tCommonCode">
+              <MappingFragment StoreEntitySet="tCommonCode">
+                <ScalarProperty Name="UptDateTime" ColumnName="UptDateTime" />
+                <ScalarProperty Name="CrtDateTime" ColumnName="CrtDateTime" />
+                <ScalarProperty Name="DltYn" ColumnName="DltYn" />
+                <ScalarProperty Name="UseYn" ColumnName="UseYn" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="CodeName" ColumnName="CodeName" />
+                <ScalarProperty Name="CommonCode" ColumnName="CommonCode" />
+                <ScalarProperty Name="GroupCode" ColumnName="GroupCode" />
+                <ScalarProperty Name="GroupIdx" ColumnName="GroupIdx" />
+                <ScalarProperty Name="CodeIdx" ColumnName="CodeIdx" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tCommonCodeGroup">
+            <EntityTypeMapping TypeName="jaejaeSystemModel.tCommonCodeGroup">
+              <MappingFragment StoreEntitySet="tCommonCodeGroup">
+                <ScalarProperty Name="UptDateTime" ColumnName="UptDateTime" />
+                <ScalarProperty Name="CrtDateTime" ColumnName="CrtDateTime" />
+                <ScalarProperty Name="DltYn" ColumnName="DltYn" />
+                <ScalarProperty Name="UseYn" ColumnName="UseYn" />
+                <ScalarProperty Name="CodeName" ColumnName="CodeName" />
+                <ScalarProperty Name="GroupCode" ColumnName="GroupCode" />
+                <ScalarProperty Name="GroupIdx" ColumnName="GroupIdx" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="pSelectConditionTestTB" FunctionName="jaejaeSystemModel.Store.pSelectConditionTestTB">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="jaejaeSystemModel.pSelectConditionTestTB_Result">
+                <ScalarProperty Name="UKID" ColumnName="UKID" />
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="USERPASS" ColumnName="USERPASS" />
+                <ScalarProperty Name="USERNM" ColumnName="USERNM" />
+                <ScalarProperty Name="USERTYPECD" ColumnName="USERTYPECD" />
+                <ScalarProperty Name="AUTHTYPE" ColumnName="AUTHTYPE" />
+                <ScalarProperty Name="OFFICETEL1" ColumnName="OFFICETEL1" />
+                <ScalarProperty Name="OFFICETEL2" ColumnName="OFFICETEL2" />
+                <ScalarProperty Name="OFFICETEL3" ColumnName="OFFICETEL3" />
+                <ScalarProperty Name="CELLNO1" ColumnName="CELLNO1" />
+                <ScalarProperty Name="CELLNO2" ColumnName="CELLNO2" />
+                <ScalarProperty Name="CELLNO3" ColumnName="CELLNO3" />
+                <ScalarProperty Name="ZIPCODE" ColumnName="ZIPCODE" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="ADDRESS1" ColumnName="ADDRESS1" />
+                <ScalarProperty Name="EMAIL1" ColumnName="EMAIL1" />
+                <ScalarProperty Name="EMAIL2" ColumnName="EMAIL2" />
+                <ScalarProperty Name="ISSMS" ColumnName="ISSMS" />
+                <ScalarProperty Name="ISEMAIL" ColumnName="ISEMAIL" />
+                <ScalarProperty Name="COMPANYID" ColumnName="COMPANYID" />
+                <ScalarProperty Name="ORGNM" ColumnName="ORGNM" />
+                <ScalarProperty Name="DIVISIONNM" ColumnName="DIVISIONNM" />
+                <ScalarProperty Name="JOBNM" ColumnName="JOBNM" />
+                <ScalarProperty Name="EMPNO" ColumnName="EMPNO" />
+                <ScalarProperty Name="ENTERDT" ColumnName="ENTERDT" />
+                <ScalarProperty Name="APPTYPE" ColumnName="APPTYPE" />
+                <ScalarProperty Name="APPDT" ColumnName="APPDT" />
+                <ScalarProperty Name="APPUSERID" ColumnName="APPUSERID" />
+                <ScalarProperty Name="DELYN" ColumnName="DELYN" />
+                <ScalarProperty Name="CREDT" ColumnName="CREDT" />
+                <ScalarProperty Name="CREUSERID" ColumnName="CREUSERID" />
+                <ScalarProperty Name="MODDT" ColumnName="MODDT" />
+                <ScalarProperty Name="MODUSERID" ColumnName="MODUSERID" />
+                <ScalarProperty Name="RESEARCHERNM" ColumnName="RESEARCHERNM" />
+                <ScalarProperty Name="BIRTHDT" ColumnName="BIRTHDT" />
+                <ScalarProperty Name="GENDERCD" ColumnName="GENDERCD" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="userTB">
+            <EntityTypeMapping TypeName="jaejaeSystemModel.userTB">
+              <MappingFragment StoreEntitySet="userTB">
+                <ScalarProperty Name="GENDERCD" ColumnName="GENDERCD" />
+                <ScalarProperty Name="BIRTHDT" ColumnName="BIRTHDT" />
+                <ScalarProperty Name="RESEARCHERNM" ColumnName="RESEARCHERNM" />
+                <ScalarProperty Name="MODUSERID" ColumnName="MODUSERID" />
+                <ScalarProperty Name="MODDT" ColumnName="MODDT" />
+                <ScalarProperty Name="CREUSERID" ColumnName="CREUSERID" />
+                <ScalarProperty Name="CREDT" ColumnName="CREDT" />
+                <ScalarProperty Name="DELYN" ColumnName="DELYN" />
+                <ScalarProperty Name="APPUSERID" ColumnName="APPUSERID" />
+                <ScalarProperty Name="APPDT" ColumnName="APPDT" />
+                <ScalarProperty Name="APPTYPE" ColumnName="APPTYPE" />
+                <ScalarProperty Name="ENTERDT" ColumnName="ENTERDT" />
+                <ScalarProperty Name="EMPNO" ColumnName="EMPNO" />
+                <ScalarProperty Name="JOBNM" ColumnName="JOBNM" />
+                <ScalarProperty Name="DIVISIONNM" ColumnName="DIVISIONNM" />
+                <ScalarProperty Name="ORGNM" ColumnName="ORGNM" />
+                <ScalarProperty Name="COMPANYID" ColumnName="COMPANYID" />
+                <ScalarProperty Name="ISEMAIL" ColumnName="ISEMAIL" />
+                <ScalarProperty Name="ISSMS" ColumnName="ISSMS" />
+                <ScalarProperty Name="EMAIL2" ColumnName="EMAIL2" />
+                <ScalarProperty Name="EMAIL1" ColumnName="EMAIL1" />
+                <ScalarProperty Name="ADDRESS1" ColumnName="ADDRESS1" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="ZIPCODE" ColumnName="ZIPCODE" />
+                <ScalarProperty Name="CELLNO3" ColumnName="CELLNO3" />
+                <ScalarProperty Name="CELLNO2" ColumnName="CELLNO2" />
+                <ScalarProperty Name="CELLNO1" ColumnName="CELLNO1" />
+                <ScalarProperty Name="OFFICETEL3" ColumnName="OFFICETEL3" />
+                <ScalarProperty Name="OFFICETEL2" ColumnName="OFFICETEL2" />
+                <ScalarProperty Name="OFFICETEL1" ColumnName="OFFICETEL1" />
+                <ScalarProperty Name="AUTHTYPE" ColumnName="AUTHTYPE" />
+                <ScalarProperty Name="USERTYPECD" ColumnName="USERTYPECD" />
+                <ScalarProperty Name="USERNM" ColumnName="USERNM" />
+                <ScalarProperty Name="USERPASS" ColumnName="USERPASS" />
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="UKID" ColumnName="UKID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="없음" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

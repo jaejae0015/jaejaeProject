@@ -1,0 +1,393 @@
+﻿@model jaejaeBoard.Models.userTB
+@{
+    ViewBag.Title = "Create";
+    Layout = "";
+}
+<style>
+
+    .popup {
+        background: azure;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+
+    .popup > div {
+        width: 890px;
+        height: 570px;
+        margin: 0 auto;
+        top: 50%;
+        -webkit-transform: translateY(30%);
+        transform: translateY(30%);
+        padding-top: 50px;
+        border: 4px solid #000;
+        background: #f1e0d6;
+        overflow: hidden
+    }
+
+    .input_tel > label > input[type=text] {
+        width: 50px;
+    }
+
+    .input_tel > select {
+        width: 65px;
+        height: 25px;
+    }
+
+    .popup > div button {
+        width: 100%;
+        height: 100px;
+        color: #fff;
+        font-size: 28px;
+        background: #dc0225;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        font-weight: 600;
+        z-index: 3
+    }
+
+    .popup > div button::before {
+        content: "";
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        position: relative;
+        margin-right: 10px;
+        top: 12px;
+    }
+
+    .popup > div p {
+        font-family: "SDSamliphopangche_Basic";
+        font-size: 58px;
+        color: #fff;
+        position: relative;
+        text-align: center;
+        letter-spacing: .03em;
+        z-index: 2
+    }
+
+    .popup > div p span {
+        font-family: "SDSamliphopangche_Outline";
+        color: #000;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        letter-spacing: 0em
+    }
+
+    .popup.on {
+        display: block
+    }
+
+    .popup#no > div button::before {
+        background-position: -150px 0
+    }
+
+    .popup#no img {
+        margin: 0 auto;
+        display: block;
+        position: relative;
+        left: 20px;
+        -webkit-animation: move2 .5s;
+        animation: move2 .5s
+    }
+
+    .popup#yes p {
+        margin-top: 30px
+    }
+
+    .popup#yes span.bg {
+        -webkit-animation: move .5s;
+        animation: move .5s;
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        width: 100%;
+        height: 500px;
+        background: url(../img/yes_img.png) no-repeat;
+        z-index: 1
+    }
+
+    .table.type2 th {
+        background: #dbe9f0;
+        font-weight: 600;
+        color: #333;
+        min-width: 100px;
+    }
+    .btn2 {
+        background: #073765;
+        color: #fff;
+        width: 100px;
+        height: 30px;
+        float: right;
+    }
+    
+    .table {
+        border-top: 2px solid #073765;
+    }
+
+        .table.type2 td {
+            padding: 3px 5px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            border-left: 0;
+            border-right: 0;
+        }
+
+    input[type=text] {
+        height: 25px;
+    }
+
+    input[type=password] {
+        height: 25px;
+    }
+
+    .inputt select {
+        width: 180px;
+        height: 25px;
+    }
+</style>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.13.1.custom/jquery-ui.min.js"></script>
+<script src="~/Scripts/jqGrid/js/jquery.jqGrid.min.js"></script>
+<script src="~/Scripts/jqGrid/js/i18n/grid.locale-kr.js"></script>
+<script src="~/Scripts/popup.js"></script>
+<script src="~/Scripts/common.js"></script>
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/jquery.inputmask.min.js"></script>
+<script type="text/javascript">
+    var $popup = null;
+    $(document).ready(function () {
+        Initialize();
+        $popup.LoadData("@ViewBag.Ukid");
+    });
+
+    function Initialize() {
+        $popup = new function () {
+            this.LoadData = function (sUserIdx) {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetUserDetail", "testTBs")',
+                    data: {
+                        iUserIdx: sUserIdx
+                    },
+                    success: function (data) {
+                        if (data.List != null) {
+                            var list = JSON.parse(data.List);
+
+                            if (list != null) {
+                                $popup.tUser = list;
+                                // 일시
+                                $popup.tUser.CREDT = isNaN(Date.parse($popup.tUser.CREDT)) ? "" : moment(Date.parse($popup.tUser.CREDT)).format("YYYY.MM.DD HH:mm:ss");
+                                $popup.tUser.MODDT = isNaN(Date.parse($popup.tUser.MODDT)) ? "" : moment(Date.parse($popup.tUser.MODDT)).format("YYYY.MM.DD HH:mm:ss");
+                                $("#divUserDetail").setValues("$popup");
+                            }
+                            
+                           
+                        }
+                        else {
+                            alert("(INFO) " + data.Message);
+                        }
+                        //winPopup.CloseLoading();
+                    },
+                    error: function () {
+                        alert("(ERROR) 서버와의 통신에 실패하였습니다.");
+                        //winPopup.CloseLoading();
+                    }
+                });
+            };
+            this.SaveUser = function (strSave) {
+
+                $("#divUserDetail").getValues("$popup");
+
+                var tUser = $popup.tUser;
+
+                if (strSave == 'S') {
+                    if (tUser.USERID.length <= 0) {
+                        alert("아이디를 입력하여 주세요.");
+                        $("#divUserDetail").getElementsByModel('tUser.USERID')[0].focus();
+                        return;
+                    }
+                    else if (tUser.USERNM.length <= 0) {
+                        alert("사용명을 입력하여 주세요.");
+                        $("#divUserDetail").getElementsByModel('tUser.USERNM')[0].focus();
+                        return;
+                    }
+                    if (tUser.CREDT.length <= 0) {
+                        tUser.CREDT = "";
+                    }
+                    else if (tUser.MODDT.length <= 0) {
+                        tUser.MODDT = "";
+                    }
+                    tUser.DELYN = 'N';
+                } else {
+                    tUser.DELYN = 'Y';
+                }
+               $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("SaveUser", "testTBs")',
+                    data: {
+                        sData: JSON.stringify(tUser)
+                    },
+                    success: function (data) {
+                        if (data != null) {
+                            alert("(OK) 처리되었습니다.");
+                            opener.parent.LoadGridDataCommonCodeGroup();
+                        }
+                    },
+                    error: function () {
+                        alert("(ERROR) 서버와의 통신에 실패하였습니다.");
+                    }
+                });
+            };
+        };
+    }
+</script>
+<section class="popup" style="padding-left: 10px; padding-right:10px">
+    @*<button type="button" class="close" onclick="winPopup.Close();"><span class="tts">팝업닫기</span></button>*@
+    <h1>사용자 상세정보</h1>
+    <table class="table type2" id="divUserDetail">
+        <colgroup>
+            <col width="20%">
+            <col width="30%">
+            <col width="20%">
+            <col width="30%">
+        </colgroup>
+        <tbody>
+            <tr>
+                <th>사용자구분</th>
+                <td>
+                    <div class="radio_box" style="font-size: 15px;">
+                        <label><input type="radio" name="USERTYPECD" data-model="tUser.USERTYPECD" value="INR" /> 내부직원 </label>
+                        <label><input type="radio" name="USERTYPECD" data-model="tUser.USERTYPECD" value="OUR" /> 외부사용자 </label>
+                        <label><input type="radio" name="USERTYPECD" data-model="tUser.USERTYPECD" value="MASTER" />관리자 </label>
+                    </div>
+                </td>
+                <th>아이디</th>
+                <td>
+                    <div class="input_btn">
+                        <input type="text" title="아이디" data-model="tUser.USERID" class="userid" />
+                        <!--<button type="button" class="btn type1">중복확인</button>-->
+                    </div>
+                    <p class="small" style="margin: 0px;">(영문, 숫자 조합  6자리  이상)</p>
+                </td>
+            </tr>
+            <tr>
+                <th>성별</th>
+                <td>
+                    <div class="radio_box" style="font-size: 15px;">
+                        <label><input type="radio" name="GENDERCD" data-model="tUser.GENDERCD" value="M"/> 남성 </label>
+                        <label><input type="radio" name="GENDERCD" data-model="tUser.GENDERCD" value="F"/> 여성 </label>
+                    </div>
+                </td>
+                <th>생년월일</th>
+                <td>
+                    <input type="text" title="생년월일" data-model="tUser.BIRTHDT" />
+                </td>
+            </tr>
+            <tr>
+                <th>비밀번호</th>
+                <td><input type="password" title="비밀번호" data-model="tUser.USERPASS" /><p class="small" style="margin: 0px;">(영문, 숫자, 특수기호 조합 8자리 이상)</p></td>
+                <th>비밀번호확인</th>
+                <td><input type="password" title="비밀번호확인" data-model="tUser.UserPasswdC" /></td>
+            </tr>
+            <tr>
+                <th>성명</th>
+                <td><input type="text" title="성명" data-model="tUser.USERNM" /></td>
+                <th>사번</th>
+                <td data-model="tUser.EMPNO" />
+            </tr>
+            <tr>
+                <th>소속기관</th>
+                <td class="inputt">
+                    <select name="" id="" data-model="tUser.ORGNM">
+                        @Html.Action("GetCodeLists", "testTBs", new { sGroupCode = "OrgCd" })
+                    </select>
+                </td>
+                <th>부서</th>
+                <td class="inputt">
+                    <select name="" id="" data-model="tUser.DIVISIONNM">
+                        @Html.Action("GetCodeLists", "testTBs", new { sGroupCode = "DivisionCd" })
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>전화번호</th>
+                <td>
+                    <div class="input_tel">
+                        <select name="" id="" title="연락처 앞자리" data-model="tUser.OFFICETEL1">
+                            @Html.Action("GetCodeLists", "testTBs", new { sGroupCode = "OffTelCd" })
+                        </select>
+                        <label><input type="text" id="" title="연락처 중간자리" data-model="tUser.OFFICETEL2" /></label>
+                        <label><input type="text" id="" title="연락처 끝자리" data-model="tUser.OFFICETEL3" /></label>
+                    </div>
+                </td>
+                <th>휴대폰</th>
+                <td>
+                    <div class="input_tel">
+                        <select name="" id="" title="연락처 앞자리" data-model="tUser.CELLNO1">
+                            @Html.Action("GetCodeLists", "testTBs", new { sGroupCode = "OffTelCd" })
+                        </select>
+                        <label><input type="text" id="" title="연락처 중간자리" data-model="tUser.CELLNO2" /></label>
+                        <label><input type="text" id="" title="연락처 끝자리" data-model="tUser.CELLNO3" /></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>이메일</th>
+                <td class="inputt" colspan="3">
+                    <div class="input_mail">
+                        <label><input type="text" title="이메일 아이디" data-model="tUser.EMAIL1" /></label>
+                        <label>@@</label>
+                        <label><input type="text" title="이메일 주소" data-model="tUser.EMAIL2" /></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>이메일수신여부</th>
+                <td>
+                    <div class="radio_box">
+                        <label><input type="radio" name="EmailRcvYn" data-model="tUser.ISEMAIL" value="Y" /> 수신허용 </label>
+                        <label><input type="radio" name="EmailRcvYn" data-model="tUser.ISEMAIL" value="N" /> 수신거부 </label>
+                    </div>
+                </td>
+                <th>SMS수신여부</th>
+                <td>
+                    <div class="radio_box">
+                        <label><input type="radio" name="SMSRcvYn" data-model="tUser.ISSMS" value="Y" /> 수신허용 </label>
+                        <label><input type="radio" name="SMSRcvYn" data-model="tUser.ISSMS" value="N" /> 수신거부 </label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>주소</th>
+                <td colspan="3">
+                    <div style="padding: 3px;"><input type="text" placeholder="우편번호 입력" data-model="tUser.ZIPCODE" class="wid100" style="width: 100px; padding: 3px;"></div>
+                    <div style="padding: 3px;"><input type="text" placeholder="주소1 입력하세요" data-model="tUser.ADDRESS" class="wid100" style="width: 500px;"></div>
+                    <div style="padding: 3px;"><input type="text" placeholder="주소2 입력하세요" data-model="tUser.ADDRESS1" class="wid100" style="width: 700px;"></div>
+                </td>
+            </tr>
+            <tr>
+                <th>등록일시</th>
+                <td data-model="tUser.CREDT"></td>
+                <th>등록자</th>
+                <td data-model="tUser.CREUSERID"></td>
+            </tr>
+            <tr>
+                <th>수정일시</th>
+                <td data-model="tUser.MODDT"></td>
+                <th>최종수정자</th>
+                <td data-model="tUser.MODUSERID"></td>
+            </tr>
+        </tbody>
+    </table>
+    
+        <button type="button" class="btn2" id="btnDelete" onclick="$popup.SaveUser('D');">삭제</button>
+        <button type="button" class="btn2" id="btnSave" onclick="$popup.SaveUser('S');">저장</button>
+    
+
+</section>
