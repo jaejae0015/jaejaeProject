@@ -1,0 +1,28 @@
+--SVN/Git연동
+https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=nc926&logNo=220918081958
+https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=jung_cpp&logNo=221182442532
+
+
+--토큰생성 
+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
+
+https://velog.io/@jakezo/GitHub-%ED%86%A0%ED%81%B0-%EC%9D%B8%EC%A6%9D-%EB%A1%9C%EA%B7%B8%EC%9D%B8-Personal-Access-Token-%EC%83%9D%EC%84%B1-%EB%B0%8F-%EC%82%AC%EC%9A%A9-%EB%B0%A9%EB%B2%95
+
+--mssql 로컬서버 생성
+https://rjs5967.tistory.com/21
+
+[정보]
+(localdb)\MSSQLLocalDB
+master
+jaejae
+
+--EF6설치
+https://nowonbun.tistory.com/506
+(단, 테이블에 PK가 있는 경우에만 뜨게된다)
+https://docs.microsoft.com/ko-kr/ef/ef6/fundamentals/install
+
+--Nuget낮은 버전 설치
+https://docs.microsoft.com/ko-kr/xamarin/cross-platform/troubleshooting/questions/nuget-package-downgrade
+
+--AutoFac사용
+https://intrepidgeeks.com/tutorial/autofac-example
