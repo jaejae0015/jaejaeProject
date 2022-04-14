@@ -10,15 +10,15 @@
             $("#gridCommonCodeGroup").gridInit({
                 //colNames: ['사용자ID', '이름', '승인상태', '이메일'],
                 colModel: [{
-                    label: "사용자ID", name: "USERID", width: 40, align: 'center', hidden: false,
+                    label: "사용자ID", name: "USERID", width: 370, align: 'center', hidden: false,
                     formatter: function (cellValue, options, rowData) {
                         return "<a href='javascript:openPopupAdd(" + rowData.UKID + ");'>" + cellValue + "</a>";
                     }
                 },
-                { label: "이름", name: 'USERNM', width: 40, align: 'center', hidden: false },
-                { label: "승인상태", name: 'AUTHTYPE', width: 40, align: 'center', hidden: false },
+                { label: "이름", name: 'USERNM', width: 210, align: 'center', hidden: false },
+                { label: "승인상태", name: 'AUTHTYPE', width: 200, align: 'center', hidden: false },
                 {
-                    label: "이메일", name: 'EMAIL1', width: 80, resizable: true, align: 'center', hidden: false,
+                    label: "이메일", name: 'EMAIL1', width: 370, resizable: true, align: 'center', hidden: false,
                     formatter: function (cellValue, options, rowdata, action) {
                         if (rowdata.EMAIL1 != "") {
                             return rowdata.EMAIL1 + '@@' + rowdata.EMAIL2;
@@ -53,12 +53,13 @@
             });
         }
         function LoadGridDataCommonCodeGroup() {
-            $("#tbSTUDYLIST").jqGrid('setGridParam', {
-                url: '/Common/ServiceHandler/UserBizHandler.ashx',
+            $("#gridCommonCodeGroup").jqGrid('setGridParam', {
+                type: "Post",
+                url: '/Controllers/UserBizHandler.ashx',
                 postData: {
-                    method: 'GETUSERLIST_PROC',
+                    method:'GETUSERLIST_PROC',
                     args: {
-                        sData:''
+                        pStrSearchText:''
                     },
                     returnType: 'json'
                 },

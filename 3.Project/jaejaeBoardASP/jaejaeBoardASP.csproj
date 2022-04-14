@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -68,6 +69,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
@@ -189,6 +191,7 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\jqGridFunc.js" />
     <Content Include="Scripts\jqGrid\.gitignore" />
     <Content Include="Scripts\jqGrid\bower.json" />
     <Content Include="Scripts\jqGrid\build.properties" />
@@ -401,6 +404,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Service\UserService.svc" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -419,6 +423,14 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Common\AjaxCallSignature.cs" />
+    <Compile Include="Common\BaseHandler.cs" />
+    <Compile Include="Common\HttpVerbAttribute.cs" />
+    <Compile Include="Common\HttpVerbNotAllowedException.cs" />
+    <Compile Include="Common\OnMethodInvokeArgs.cs" />
+    <Compile Include="Common\RequireAuthenticationAttribute.cs" />
+    <Compile Include="Common\ServiceEP.cs" />
+    <Compile Include="Common\ServiceFactory.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -467,6 +479,9 @@
       <DependentUpon>jaejaeSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\UserService.svc.cs">
+      <DependentUpon>UserService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -489,9 +504,7 @@
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
@@ -505,6 +518,16 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\jaejaeBoardASP.Biz.Interface\jaejaeBoardASP.Biz.Interface.csproj">
+      <Project>{ACD6D231-2C3A-4424-8210-5E28E750FDD2}</Project>
+      <Name>jaejaeBoardASP.Biz.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\jaejaeBoardASP.Biz\jaejaeBoardASP.Biz.csproj">
+      <Project>{ED0809A9-78E4-4E08-8F1C-DDBC045E28B6}</Project>
+      <Name>jaejaeBoardASP.Biz</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

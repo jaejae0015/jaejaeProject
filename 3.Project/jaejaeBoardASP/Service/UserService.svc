@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="jaejaeBoardASP.Service.IUserService" CodeBehind="UserService.svc.cs" %>

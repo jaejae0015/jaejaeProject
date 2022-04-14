@@ -4,38 +4,28 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using Newtonsoft.Json;
+using jaejaeBoardASP.Biz.Interface;
+using System.Web.Services.Description;
+using jaejaeBoardASP.Common;
 
 namespace jaejaeBoardASP.Controllers
 {
     /// <summary>
     /// UserBizHandler의 요약 설명입니다.
     /// </summary>
-    public class UserBizHandler : IHttpHandler
+    public class UserBizHandler : BaseHandler
     {
-        public string GetJson(object obj)
-        {
-            string json = string.Empty;
+        
 
-            if (obj != null)
+        public object GETUSERLIST_PROC(string pStrSearchText)
+        {
+            var a = "짜정나";
+            DataTable dt;
+            using (IUserBusiness Proxy = ServiceFactory.CreateServiceChannel<IUserBusiness>(ServiceEP.WCF_OfficeService()))
             {
-                json = JsonConvert.SerializeObject(obj);
+                dt = Proxy.GETUSERLIST_PROC(pStrSearchText);
             }
-
-            return json;
+            return JsonConvert.SerializeObject(dt);
         }
-        public void ProcessRequest(HttpContext context)
-        {
-            context.Response.ContentType = "text/plain";
-            context.Response.Write("Hello World");
-        }
-
-        public bool IsReusable
-        {
-            get
-            {
-                return false;
-            }
-        }
-
     }
 }
