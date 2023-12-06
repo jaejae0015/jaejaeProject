@@ -17,6 +17,8 @@ npm install vuex@3.6.2
 npm install -g @vue/cli
 vue create 프로젝트명
 
+[참고] https://velog.io/@integer/Vue.js-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0
+
 ```
 
 ## ESLint 설정 및 bootstrapVue 설정
