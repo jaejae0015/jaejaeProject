@@ -19,7 +19,22 @@ vue create 프로젝트명
 
 ```
 
+## ESLint 설정 및 bootstrapVue 설정
+```
+--bootstrapVue 설정
+npm install vue bootstrap bootstrap-vue
 
+main.js에 코드 넣어주기[참고] https://bootstrap-vue.org/docs
+
+--ESLint 설정
+
+npm install -g eslint
+npm install --save-dev @babel/eslint-parser
+npm install --save-dev eslint eslint-plugin-vue
+
+eslint --init
+
+--이때 생성되는 .eslintrc.js에서 //"standard-with-typescript"를 주석
 
 
 ## Project setup
