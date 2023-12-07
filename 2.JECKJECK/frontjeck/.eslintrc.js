@@ -7,8 +7,10 @@ module.exports = {
     },
     "extends": [
         //"standard-with-typescript",
-        //"plugin:vue/vue3-essential",
+        "plugin:vue/vue3-essential",
         "plugin:vue/vue3-recommended",
+        "plugin:vue/vue3-strongly-recommended",
+        "plugin:vue/strongly-recommended",
         "eslint:recommended"
     ],
      "overrides": [

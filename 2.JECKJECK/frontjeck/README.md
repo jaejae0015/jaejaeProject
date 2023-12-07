@@ -1,6 +1,11 @@
 # frontjeck
+[화면 구성]
+로그인
+회원가입
+메인
+추가/수정
 
-## 프로젝트 생성
+## 프로젝트 생성 시 참고
 - bootstrapVue를 쓴다면 버전 2로 생성해야함.
 - 아래의 명령어 대로 설치 할 것 (router버전 포함)
 ```
@@ -42,20 +47,13 @@ eslint --init
 ## Project setup
 ```
 npm install
-```
-
-### Compiles and hot-reloads for development
-```
+--Compiles and hot-reloads for development
 npm run serve
-```
-
-### Compiles and minifies for production
-```
+--Compiles and minifies for production
 npm run build
+--Lints and fixes files
+npm run lint
+
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
 
