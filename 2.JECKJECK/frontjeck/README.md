@@ -45,6 +45,15 @@ eslint --init
 
 --이때 생성되는 .eslintrc.js에서 //"standard-with-typescript"를 주석
 
+```
+
+## http 통신을 위한 설정
+```
+--http 설정 추가
+npm install axios
+
+```
+
 
 ## Project setup
 ```

@@ -44,11 +44,14 @@
 
 <script>
 import CardTest from '@/components/card.vue'
+import axios from "axios";
 export default {
   name: 'MainTest',
-  components: {
-    CardTest
-    
+  components: {CardTest},
+  setup() {
+    axios.get("http://localhost:8080/api/items").then((res)=>{
+      console.log(res);
+    })
   }
 }
 </script>
