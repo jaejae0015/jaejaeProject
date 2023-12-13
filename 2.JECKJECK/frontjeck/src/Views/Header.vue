@@ -1,6 +1,7 @@
 <template>
   <div
-    data-bs-theme="dark"
+    id="headerTest"
+    data-bs-theme="dark headerTest"
   >
     <div
       id="navbarHeader"
@@ -90,6 +91,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

@@ -1,5 +1,8 @@
 <template>
-  <div class="text-body-secondary py-5">
+  <div
+    id="footerTest"
+    class="text-body-secondary py-5 footerTest" 
+  >
     <div class="container">
       <p class="float-end mb-1">
         <a href="#">Back to top</a>
@@ -23,6 +26,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>
