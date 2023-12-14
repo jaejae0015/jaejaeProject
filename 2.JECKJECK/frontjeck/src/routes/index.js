@@ -14,10 +14,10 @@ export default new VueRouter({
     //운영배포시에는 해당 mode와 관련하여 문서 확인 필수
     mode:'history', //url 상에 #이 제거되도록 설정 - #을 이용해서 새로운 페이지가 아님을 인지
     routes:[
-        {
-            path:"/",
-            redirect:"/login"
-        },
+        // {
+        //     path:"/",
+        //     redirect:"/login"
+        // },
         {
             path:'/login',
             //component:LoginPage

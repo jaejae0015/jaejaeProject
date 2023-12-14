@@ -6,6 +6,8 @@
 vue.js는 최초 로딩시에 app.js에 모든 화면을 다 들고오는 것이 아니라, 
 한 화면에서 바뀌는 부분만 불러오는 Routing이라는 개념이 필요하다. 이게 SPA 형식이며  "코드 스플리팅" 이라고한다.
 
+## 단축키 정리
+ctrl+space : import
 
 ## 프로젝트 생성 시 참고
 - bootstrapVue를 쓴다면 버전 2로 생성해야함.
@@ -51,6 +53,23 @@ eslint --init
 ```
 --http 설정 추가
 npm install axios
+
+-- vue.config.js에 아래와 같이 설정 필요
+//CORS 에러 처리
+module.exports = {
+  devServer: {
+      proxy: {
+          '/': {
+              target: 'http://localhost:8080',
+              changeOrigin: true,
+              ws:false,
+              pathRewrite: {
+                  '^/': ''
+              }
+          }
+      }
+  }
+}
 
 ```
 

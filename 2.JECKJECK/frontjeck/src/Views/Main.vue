@@ -30,11 +30,12 @@
       <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           <div
-            v-for="i in 12"
-            :key="i"
+            v-for="(item,idx) in state.items"
+            :key="idx"
             class="col"
           >
-            <CardTest />
+            <CardTest :item="item" />
+            <!-- {{ item }} -->
           </div>
         </div>
       </div>
@@ -45,13 +46,22 @@
 <script>
 import CardTest from '@/components/card.vue'
 import axios from "axios";
+import { reactive } from 'vue';
 export default {
   name: 'MainTest',
-  components: {CardTest},
+   components: {CardTest},
   setup() {
-    axios.get("http://localhost:8080/api/items").then((res)=>{
-      console.log(res);
+    const state =reactive({
+      items:[]
     })
+    // vue.config.js에서 CORS에러 처리를 진행했으면, 아래와 같이 호스트 주소를 제외하고 호출한다.
+    //axios.get("/api/items").then((res)=>{
+    axios.get("/api/items").then(({data})=>{
+      console.log(data);
+      //state.items=res.data;
+      state.items=data;
+    })
+    return {state}
   }
 }
 </script>
