@@ -56,7 +56,7 @@ export default {
     })
     // vue.config.js에서 CORS에러 처리를 진행했으면, 아래와 같이 호스트 주소를 제외하고 호출한다.
     //axios.get("/api/items").then((res)=>{
-    axios.get("/api/items").then(({data})=>{
+    axios.get("/api/test").then(({data})=>{
       console.log(data);
       //state.items=res.data;
       state.items=data;
