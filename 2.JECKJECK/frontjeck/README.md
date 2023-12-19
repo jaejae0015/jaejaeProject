@@ -12,6 +12,8 @@ ctrl+space : import
 ## 프로젝트 생성 시 참고
 - bootstrapVue를 쓴다면 버전 2로 생성해야함.
 - 아래의 명령어 대로 설치 할 것 (router버전 포함)
+- node.js 설치(nodejs.org)
+
 ```
 --vue 버전 2설치
 npm install vue@2
